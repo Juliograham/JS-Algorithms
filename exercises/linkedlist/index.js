@@ -52,6 +52,40 @@ class LinkedList {
     clear () {
         this.head = null;
     }
+
+    removeFirst () {
+        if (!this.head) {
+            return;
+        }      
+        this.head = this.head.next;  
+    }
+
+    removeLast () {
+        if (!this.head) {
+            return;
+        }
+
+        if (!this.head.next) {
+            return this.head = null;
+        }
+
+        let node = this.head;
+
+        while (node) {            
+            if (node.next && !node.next.next) {
+                return node.next = null;
+            }
+            node = node.next;
+        }
+    }
+
+    insertLast (data) {
+        if (this.head) {
+            return this.getLast().next = new Node(data);
+        }
+        this.insertFirst(data);
+    }
+
 }
 
 const testing = new LinkedList;
