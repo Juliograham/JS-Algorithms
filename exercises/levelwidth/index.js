@@ -11,6 +11,24 @@
 // 4       5
 // Answer: [1, 3, 2]
 
-function levelWidth(root) {}
+function levelWidth(root) {
+    const bookmark = 'done';
+    const counter = [0];
+    const arr = [root, bookmark];
+
+    while (arr.length > 1) {
+        const node = arr.shift();
+
+        if (node === bookmark) {
+            counter.push(0);
+            arr.push(bookmark);
+        } else {
+            arr.push(...node.children);
+            counter[counter.length - 1]++;
+        }                
+    }
+
+    return counter;
+}
 
 module.exports = levelWidth;
